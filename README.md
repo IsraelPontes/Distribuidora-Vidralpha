@@ -78,7 +78,7 @@ Tipografia: **Space Grotesk** (títulos) + **Inter** (texto), via Google Fonts.
 - **Razão social/Fantasia:** Distribuidora Vidralpha
 - **CNPJ:** 16.879.263/0001-52
 - **Endereço:** Rua Grandiuva, 291 — Alto de Santa Lúcia, Carapicuíba/SP — CEP 06361-460
-- **Contato:** (11) 5493-9787 · almeida-90@hotmail.com
+- **Contato:** (11) 95493-9787 · almeida-90@hotmail.com
 
 ## 👨‍💻 Desenvolvedor
 
