@@ -323,6 +323,13 @@
   .foot-col ul li{ margin-bottom:10px; font-size:0.9rem; }
   .foot-col ul li a:hover{ color:var(--gold); }
   .foot-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:22px; font-size:0.82rem; flex-wrap:wrap; gap:12px; }
+  .dev-credit{
+    text-align:center; margin-top:18px; padding-top:18px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    font-size:0.8rem; color:rgba(255,255,255,0.5);
+  }
+  .dev-credit a{ color:rgba(255,255,255,0.75); font-weight:600; }
+  .dev-credit a:hover{ color:var(--gold); }
   .socials{ display:flex; gap:12px; }
   .socials a{
     width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.25);

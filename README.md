@@ -80,6 +80,15 @@ Tipografia: **Space Grotesk** (títulos) + **Inter** (texto), via Google Fonts.
 - **Endereço:** Rua Grandiuva, 291 — Alto de Santa Lúcia, Carapicuíba/SP — CEP 06361-460
 - **Contato:** (11) 5493-9787 · almeida-90@hotmail.com
 
+## 👨‍💻 Desenvolvedor
+
+Desenvolvido por **Israel Calista de Pontes**
+
+- LinkedIn: [linkedin.com/in/israel-calista-de-pontes](https://www.linkedin.com/in/israel-calista-de-pontes/)
+- GitHub: [github.com/IsraelPontes](https://github.com/IsraelPontes)
+- E-mail: [israelcpontes@hotmail.com](mailto:israelcpontes@hotmail.com)
+- WhatsApp: [(11) 99375-3442](https://wa.me/5511993753442)
+
 ## 📄 Licença
 
 Projeto de uso exclusivo da Distribuidora Vidralpha.
