@@ -55,10 +55,10 @@ const header = document.getElementById('site-header');
     }
     requestAnimationFrame(tick);
 
-    function pauseThenResume() {
+    function pauseThenResume(delay = 600) {
       autoScroll = false;
       clearTimeout(resumeTimeout);
-      resumeTimeout = setTimeout(() => { autoScroll = !prefersReducedMotion; }, 3500);
+      resumeTimeout = setTimeout(() => { autoScroll = !prefersReducedMotion; }, delay);
     }
 
     function goToCard(dir) {
@@ -70,7 +70,7 @@ const header = document.getElementById('site-header');
       if (next < 0) next += half;
       if (next >= half) next -= half;
       track.scrollTo({ left: next, behavior: 'smooth' });
-      pauseThenResume();
+      pauseThenResume(600);
     }
 
     prevBtn.addEventListener('click', () => goToCard(-1));
@@ -79,5 +79,5 @@ const header = document.getElementById('site-header');
     track.addEventListener('mouseenter', () => { autoScroll = false; });
     track.addEventListener('mouseleave', () => { clearTimeout(resumeTimeout); autoScroll = !prefersReducedMotion; });
     track.addEventListener('touchstart', () => { autoScroll = false; }, { passive: true });
-    track.addEventListener('touchend', pauseThenResume, { passive: true });
+    track.addEventListener('touchend', () => pauseThenResume(300), { passive: true });
   }
