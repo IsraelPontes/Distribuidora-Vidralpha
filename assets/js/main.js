@@ -40,12 +40,16 @@ const header = document.getElementById('site-header');
     const speed = 0.6; // px por frame
 
     function tick() {
+      const half = track.scrollWidth / 2;
       if (autoScroll) {
-        const half = track.scrollWidth / 2;
         track.scrollLeft += speed;
-        if (track.scrollLeft >= half) {
-          track.scrollLeft -= half;
-        }
+      }
+      // A virada do loop é checada sempre, mesmo com o giro automático pausado
+      // (rolagem manual do usuário), pra nunca deixar chegar ao fim de verdade.
+      if (track.scrollLeft >= half) {
+        track.scrollLeft -= half;
+      } else if (track.scrollLeft < 0) {
+        track.scrollLeft += half;
       }
       requestAnimationFrame(tick);
     }
