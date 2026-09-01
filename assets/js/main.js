@@ -18,3 +18,18 @@ const header = document.getElementById('site-header');
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
+
+  // Carrossel de parceiros
+  const track = document.getElementById('partnersTrack');
+  const prevBtn = document.getElementById('partnersPrev');
+  const nextBtn = document.getElementById('partnersNext');
+  if (track && prevBtn && nextBtn) {
+    const scrollByCard = (dir) => {
+      const slide = track.querySelector('.partner-slide');
+      const gap = 22;
+      const distance = slide ? slide.offsetWidth + gap : 300;
+      track.scrollBy({ left: dir * distance, behavior: 'smooth' });
+    };
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+  }
