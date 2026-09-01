@@ -280,13 +280,13 @@
   .carousel-btn:hover{ background:var(--blue-2); color:var(--white); transform:translateY(-2px); }
 
   .partners-track{
-    display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory;
+    display:flex; gap:22px; overflow-x:auto;
     padding-bottom:12px; scrollbar-width:none;
   }
   .partners-track::-webkit-scrollbar{ display:none; }
 
   .partner-slide{
-    flex:0 0 auto; width:300px; scroll-snap-align:start;
+    flex:0 0 auto; width:300px;
     border-radius:var(--radius-lg); overflow:hidden;
     box-shadow:0 16px 34px rgba(6,27,54,0.1);
     transition:transform .3s ease, box-shadow .3s ease;
@@ -302,6 +302,8 @@
     background:linear-gradient(135deg, var(--blue), var(--blue-2));
   }
   .partner-media.no-logo img{ display:none; }
+  .partner-media--photo{ padding:0; }
+  .partner-media--photo img{ width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; }
 
   .partner-body{
     background:var(--navy); padding:24px 22px 26px; margin-top:-26px;
