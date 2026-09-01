@@ -282,14 +282,13 @@
   .carousel-btn--prev{ left:-10px; }
   .carousel-btn--next{ right:-10px; }
 
-  .partners-track{
-    display:flex; gap:22px; overflow-x:auto;
-    padding-bottom:12px; scrollbar-width:none;
+  .partners-swiper{ padding-bottom:12px; }
+  .partners-swiper .swiper-wrapper{
+    transition-timing-function:linear !important; /* movimento constante, sem "aceleração" a cada slide */
   }
-  .partners-track::-webkit-scrollbar{ display:none; }
 
   .partner-slide{
-    flex:0 0 auto; width:300px;
+    width:300px;
     border-radius:var(--radius-lg); overflow:hidden;
     box-shadow:0 16px 34px rgba(6,27,54,0.1);
     transition:transform .3s ease, box-shadow .3s ease;

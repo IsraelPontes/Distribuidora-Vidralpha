@@ -19,65 +19,24 @@ const header = document.getElementById('site-header');
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Carrossel de parceiros — rolagem automática infinita, com botões manuais
-  const track = document.getElementById('partnersTrack');
-  const prevBtn = document.getElementById('partnersPrev');
-  const nextBtn = document.getElementById('partnersNext');
-
-  if (track && prevBtn && nextBtn) {
-    // Duplica os cards para criar o efeito de loop infinito
-    const originalSlides = Array.from(track.children);
-    originalSlides.forEach(slide => {
-      const clone = slide.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      clone.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
-      track.appendChild(clone);
-    });
-
+  // Carrossel de parceiros (Swiper.js) — loop infinito e rolagem contínua
+  if (document.querySelector('.partners-swiper')) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let autoScroll = !prefersReducedMotion;
-    let resumeTimeout;
-    const speed = 0.6; // px por frame
 
-    function tick() {
-      const half = track.scrollWidth / 2;
-      if (autoScroll) {
-        track.scrollLeft += speed;
-      }
-      // A virada do loop é checada sempre, mesmo com o giro automático pausado
-      // (rolagem manual do usuário), pra nunca deixar chegar ao fim de verdade.
-      if (track.scrollLeft >= half) {
-        track.scrollLeft -= half;
-      } else if (track.scrollLeft < 0) {
-        track.scrollLeft += half;
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    function pauseThenResume(delay = 600) {
-      autoScroll = false;
-      clearTimeout(resumeTimeout);
-      resumeTimeout = setTimeout(() => { autoScroll = !prefersReducedMotion; }, delay);
-    }
-
-    function goToCard(dir) {
-      const slide = track.querySelector('.partner-slide');
-      const gap = 22;
-      const distance = slide ? slide.offsetWidth + gap : 300;
-      const half = track.scrollWidth / 2;
-      let next = track.scrollLeft + dir * distance;
-      if (next < 0) next += half;
-      if (next >= half) next -= half;
-      track.scrollTo({ left: next, behavior: 'smooth' });
-      pauseThenResume(600);
-    }
-
-    prevBtn.addEventListener('click', () => goToCard(-1));
-    nextBtn.addEventListener('click', () => goToCard(1));
-
-    track.addEventListener('mouseenter', () => { autoScroll = false; });
-    track.addEventListener('mouseleave', () => { clearTimeout(resumeTimeout); autoScroll = !prefersReducedMotion; });
-    track.addEventListener('touchstart', () => { autoScroll = false; }, { passive: true });
-    track.addEventListener('touchend', () => pauseThenResume(300), { passive: true });
+    new Swiper('.partners-swiper', {
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 22,
+      speed: 5000,
+      allowTouchMove: true,
+      autoplay: prefersReducedMotion ? false : {
+        delay: 1,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      navigation: {
+        nextEl: '#partnersNext',
+        prevEl: '#partnersPrev',
+      },
+    });
   }
