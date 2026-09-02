@@ -19,11 +19,12 @@ const header = document.getElementById('site-header');
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Carrossel de parceiros (Swiper.js) — loop infinito e rolagem contínua
-  if (document.querySelector('.partners-swiper')) {
+  // Carrossel de parceiros (Swiper.js) — loop infinito, pausa ao passar o mouse
+  const partnersEl = document.querySelector('.partners-swiper');
+  if (partnersEl) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    new Swiper('.partners-swiper', {
+    const partnersSwiper = new Swiper('.partners-swiper', {
       loop: true,
       slidesPerView: 'auto',
       spaceBetween: 22,
@@ -32,13 +33,15 @@ const header = document.getElementById('site-header');
       autoplay: prefersReducedMotion ? false : {
         delay: 1,
         disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      navigation: {
-        nextEl: '#partnersNext',
-        prevEl: '#partnersPrev',
       },
     });
+
+    if (partnersSwiper.autoplay) {
+      partnersEl.addEventListener('mouseenter', () => partnersSwiper.autoplay.stop());
+      partnersEl.addEventListener('mouseleave', () => partnersSwiper.autoplay.start());
+      partnersEl.addEventListener('touchstart', () => partnersSwiper.autoplay.stop(), { passive: true });
+      partnersEl.addEventListener('touchend', () => partnersSwiper.autoplay.start(), { passive: true });
+    }
   }
 
   // Faixa amarela (ticker) — mesmo esquema, sem botões

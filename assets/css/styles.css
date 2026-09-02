@@ -274,18 +274,6 @@
 
   .carousel-wrapper{ position:relative; }
 
-  .carousel-btn{
-    position:absolute; top:50%; transform:translateY(-50%);
-    width:50px; height:50px; border-radius:50%; border:none; cursor:pointer;
-    background:rgba(6,27,54,0.6); backdrop-filter:blur(6px); color:var(--white);
-    display:flex; align-items:center; justify-content:center; z-index:6;
-    box-shadow:0 12px 28px rgba(6,27,54,0.28);
-    transition:background .2s ease, transform .2s ease;
-  }
-  .carousel-btn:hover{ background:var(--gold); color:var(--navy); transform:translateY(-50%) scale(1.08); }
-  .carousel-btn--prev{ left:-10px; }
-  .carousel-btn--next{ right:-10px; }
-
   .partners-swiper{ padding-bottom:12px; }
   .partners-swiper .swiper-wrapper{
     transition-timing-function:linear !important; /* movimento constante, sem "aceleração" a cada slide */
@@ -336,9 +324,6 @@
 
   @media (max-width:560px){
     .partner-slide{ width:78vw; }
-    .carousel-btn{ width:40px; height:40px; }
-    .carousel-btn--prev{ left:-4px; }
-    .carousel-btn--next{ right:-4px; }
   }
 
   /* ---------- CTA BANNER ---------- */
