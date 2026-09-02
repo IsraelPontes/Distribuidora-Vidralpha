@@ -164,10 +164,14 @@
     color:var(--navy); font-weight:700; overflow:hidden; white-space:nowrap;
     padding:13px 0;
   }
-  .ticker-track{ display:inline-flex; gap:0; animation:scroll 22s linear infinite; }
-  .ticker-track span{ padding:0 26px; font-size:0.92rem; letter-spacing:0.04em; display:inline-flex; align-items:center; gap:10px; }
-  .ticker-track span::after{ content:"◆"; font-size:0.6rem; margin-left:26px; opacity:.7; }
-  @keyframes scroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%); } }
+  .ticker-swiper .swiper-wrapper{
+    transition-timing-function:linear !important; align-items:center;
+  }
+  .ticker-pill{
+    width:auto; padding:0 26px; font-size:0.92rem; letter-spacing:0.04em;
+    display:flex; align-items:center; gap:10px; white-space:nowrap;
+  }
+  .ticker-pill::after{ content:"◆"; font-size:0.6rem; opacity:.7; }
 
   /* ---------- SOBRE ---------- */
   .sobre{ padding:110px 0; background:var(--white); }
@@ -432,7 +436,7 @@
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
-    .ticker-track{ animation:none; }
+    .ticker-track{ animation:none; } /* mantido por segurança, classe não usa mais este seletor */
     .reveal{ opacity:1; transform:none; transition:none; }
     .wa-float{ animation:none; }
   }

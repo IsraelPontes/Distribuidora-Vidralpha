@@ -40,3 +40,20 @@ const header = document.getElementById('site-header');
       },
     });
   }
+
+  // Faixa amarela (ticker) — mesmo esquema, sem botões
+  if (document.querySelector('.ticker-swiper')) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    new Swiper('.ticker-swiper', {
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 0,
+      speed: 8000,
+      allowTouchMove: false,
+      autoplay: prefersReducedMotion ? false : {
+        delay: 1,
+        disableOnInteraction: false,
+      },
+    });
+  }
