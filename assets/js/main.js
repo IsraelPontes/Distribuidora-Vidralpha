@@ -50,6 +50,7 @@ const header = document.getElementById('site-header');
 
     new Swiper('.ticker-swiper', {
       loop: true,
+      loopAdditionalSlides: 6,
       slidesPerView: 'auto',
       spaceBetween: 0,
       speed: 8000,
