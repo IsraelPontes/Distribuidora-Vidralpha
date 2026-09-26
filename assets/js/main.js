@@ -19,29 +19,33 @@ const header = document.getElementById('site-header');
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
 
-  // Carrossel de parceiros (Swiper.js) — loop infinito, pausa ao passar o mouse
-  const partnersEl = document.querySelector('.partners-swiper');
-  if (partnersEl) {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const partnersSwiper = new Swiper('.partners-swiper', {
-      loop: true,
-      slidesPerView: 'auto',
-      spaceBetween: 22,
-      speed: 5000,
-      allowTouchMove: true,
-      autoplay: prefersReducedMotion ? false : {
-        delay: 1,
-        disableOnInteraction: false,
-      },
+  // Carrossel de parceiros — marquee 100% CSS, pausa instantânea ao passar o mouse
+  const partnersTrack = document.getElementById('partnersTrack');
+  if (partnersTrack) {
+    // Duplica os cards uma vez (loop infinito via translateX(-50%) no CSS)
+    const originalSlides = Array.from(partnersTrack.children);
+    originalSlides.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      clone.classList.add('in'); // clone é só visual, não precisa animação de entrada
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+      partnersTrack.appendChild(clone);
     });
 
-    if (partnersSwiper.autoplay) {
-      partnersEl.addEventListener('mouseenter', () => partnersSwiper.autoplay.stop());
-      partnersEl.addEventListener('mouseleave', () => partnersSwiper.autoplay.start());
-      partnersEl.addEventListener('touchstart', () => partnersSwiper.autoplay.stop(), { passive: true });
-      partnersEl.addEventListener('touchend', () => partnersSwiper.autoplay.start(), { passive: true });
-    }
+    // Duração proporcional à largura real, pra manter a mesma velocidade
+    // não importa quantos parceiros forem adicionados no futuro.
+    const pxPerSecond = 60;
+    const distance = partnersTrack.scrollWidth / 2;
+    partnersTrack.style.animationDuration = `${distance / pxPerSecond}s`;
+    partnersTrack.classList.remove('is-paused');
+
+    const pause = () => partnersTrack.classList.add('is-paused');
+    const resume = () => partnersTrack.classList.remove('is-paused');
+
+    partnersTrack.addEventListener('mouseenter', pause);
+    partnersTrack.addEventListener('mouseleave', resume);
+    partnersTrack.addEventListener('touchstart', pause, { passive: true });
+    partnersTrack.addEventListener('touchend', resume, { passive: true });
   }
 
   // Faixa amarela (ticker) — mesmo esquema, sem botões

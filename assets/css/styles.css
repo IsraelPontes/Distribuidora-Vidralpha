@@ -272,7 +272,7 @@
   .parceiros-head h2{ color:var(--navy); font-size:clamp(1.8rem,3vw,2.4rem); }
   .parceiros-head p{ color:var(--muted); margin-top:14px; max-width:560px; }
 
-  .carousel-wrapper{ position:relative; }
+  .carousel-wrapper{ position:relative; overflow:hidden; }
   .carousel-wrapper::before,
   .carousel-wrapper::after{
     content:""; position:absolute; top:0; bottom:0; width:140px; z-index:5; pointer-events:none;
@@ -284,13 +284,22 @@
     .carousel-wrapper::after{ width:60px; }
   }
 
-  .partners-swiper{ padding-bottom:12px; }
-  .partners-swiper .swiper-wrapper{
-    transition-timing-function:linear !important; /* movimento constante, sem "aceleração" a cada slide */
+  .partners-track{
+    display:flex; gap:22px; width:max-content;
+    padding-bottom:12px;
+    animation: partners-marquee 50s linear infinite;
+  }
+  .partners-track.is-paused{ animation-play-state: paused; }
+  @keyframes partners-marquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .partners-track{ animation: none; }
   }
 
   .partner-slide{
-    width:300px;
+    width:300px; flex-shrink:0;
     border-radius:var(--radius-lg); overflow:hidden;
     box-shadow:0 16px 34px rgba(6,27,54,0.1);
     transition:transform .3s ease, box-shadow .3s ease;
