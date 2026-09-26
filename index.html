@@ -384,6 +384,20 @@
         </div>
       </div>
 
+<div class="swiper-slide partner-slide reveal">
+        <div class="partner-media">
+          <img src="https://www.google.com/s2/favicons?sz=128&domain=vedugalbrasil.com.br" alt="Logo Vedugal Brasil" loading="lazy" onerror="this.parentElement.classList.add('no-logo')">
+        </div>
+        <div class="partner-body">
+          <span class="partner-tag">Vedação de Esquadrias</span>
+          <h3>Vedugal Brasil</h3>
+          <p>Fitas vedadoras de alta hidrorrepelência e guarnições em PVC (PVCdugal®) contra água, ruído e poeira em esquadrias, direto de Valinhos/SP.</p>
+          <div class="partner-actions">
+            <a href="https://vedugalbrasil.com.br/" target="_blank" rel="noopener" class="btn-mini">Site</a>
+          </div>
+        </div>
+      </div>
+
         </div>
       </div>
 
@@ -424,16 +438,18 @@
         </div>
       </div>
     </div>
-    <form class="form-card reveal" onsubmit="return false;">
+    <form class="form-card reveal" id="orcamentoForm" name="orcamento" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="orcamento">
+      <p style="display:none;"><label>Não preencha isto: <input name="bot-field"></label></p>
       <h3>Solicite seu orçamento</h3>
       <p class="sub">Preenchemos rápido, você recebe uma resposta ainda mais rápido.</p>
       <div class="form-row">
-        <input type="text" placeholder="Nome" required>
-        <input type="tel" placeholder="Telefone / WhatsApp" required>
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="tel" name="telefone" placeholder="Telefone / WhatsApp" required>
       </div>
       <div class="form-row">
-        <input type="email" placeholder="E-mail" required>
-        <select required>
+        <input type="email" name="email" placeholder="E-mail" required>
+        <select name="segmento" required>
           <option value="" disabled selected>Segmento de interesse</option>
           <option>Alumínio</option>
           <option>Ferragens</option>
@@ -441,8 +457,9 @@
           <option>Mais de um segmento</option>
         </select>
       </div>
-      <textarea placeholder="Conte um pouco sobre o seu projeto..."></textarea>
+      <textarea name="mensagem" placeholder="Conte um pouco sobre o seu projeto..."></textarea>
       <button class="btn btn-primary" type="submit">Enviar solicitação</button>
+      <p id="formFeedback" style="display:none; margin-top:14px; font-size:0.9rem; font-weight:600;"></p>
     </form>
   </div>
 </section>

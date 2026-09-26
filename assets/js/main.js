@@ -61,3 +61,31 @@ const header = document.getElementById('site-header');
       },
     });
   }
+
+  // Formulário de orçamento — envia via Netlify Forms sem recarregar a página
+  const orcamentoForm = document.getElementById('orcamentoForm');
+  if (orcamentoForm) {
+    const feedback = document.getElementById('formFeedback');
+    orcamentoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(orcamentoForm);
+      const encoded = new URLSearchParams(data).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encoded,
+      })
+        .then(() => {
+          feedback.textContent = 'Recebemos sua solicitação! Em breve entraremos em contato.';
+          feedback.style.color = '#1a7f37';
+          feedback.style.display = 'block';
+          orcamentoForm.reset();
+        })
+        .catch(() => {
+          feedback.textContent = 'Não foi possível enviar agora. Tente novamente ou chame no WhatsApp.';
+          feedback.style.color = '#c0392b';
+          feedback.style.display = 'block';
+        });
+    });
+  }

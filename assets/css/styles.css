@@ -273,6 +273,16 @@
   .parceiros-head p{ color:var(--muted); margin-top:14px; max-width:560px; }
 
   .carousel-wrapper{ position:relative; }
+  .carousel-wrapper::before,
+  .carousel-wrapper::after{
+    content:""; position:absolute; top:0; bottom:0; width:140px; z-index:5; pointer-events:none;
+  }
+  .carousel-wrapper::before{ left:0; background:linear-gradient(to right, var(--white) 0%, rgba(255,255,255,0) 100%); }
+  .carousel-wrapper::after{ right:0; background:linear-gradient(to left, var(--white) 0%, rgba(255,255,255,0) 100%); }
+  @media (max-width:760px){
+    .carousel-wrapper::before,
+    .carousel-wrapper::after{ width:60px; }
+  }
 
   .partners-swiper{ padding-bottom:12px; }
   .partners-swiper .swiper-wrapper{
