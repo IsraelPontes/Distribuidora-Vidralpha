@@ -164,14 +164,19 @@
     color:var(--navy); font-weight:700; overflow:hidden; white-space:nowrap;
     padding:13px 0;
   }
-  .ticker-swiper .swiper-wrapper{
-    transition-timing-function:linear !important; align-items:center;
+  .ticker-track{
+    display:flex; align-items:center; width:max-content;
+    animation: partners-marquee 24s linear infinite;
   }
+  .ticker-track.is-paused{ animation-play-state:paused; }
   .ticker-pill{
     width:auto; padding:0 26px; font-size:0.92rem; letter-spacing:0.04em;
     display:flex; align-items:center; gap:10px; white-space:nowrap;
   }
   .ticker-pill::after{ content:"◆"; font-size:0.6rem; opacity:.7; }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+  }
 
   /* ---------- SOBRE ---------- */
   .sobre{ padding:110px 0; background:var(--white); }

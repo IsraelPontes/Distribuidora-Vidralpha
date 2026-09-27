@@ -48,22 +48,19 @@ const header = document.getElementById('site-header');
     partnersTrack.addEventListener('touchend', resume, { passive: true });
   }
 
-  // Faixa amarela (ticker) — mesmo esquema, sem botões
-  if (document.querySelector('.ticker-swiper')) {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    new Swiper('.ticker-swiper', {
-      loop: true,
-      loopAdditionalSlides: 6,
-      slidesPerView: 'auto',
-      spaceBetween: 0,
-      speed: 8000,
-      allowTouchMove: false,
-      autoplay: prefersReducedMotion ? false : {
-        delay: 1,
-        disableOnInteraction: false,
-      },
+  // Faixa amarela (ticker) — marquee 100% CSS, mesmo padrão dos cards de parceiros
+  const tickerTrack = document.getElementById('tickerTrack');
+  if (tickerTrack) {
+    const originalPills = Array.from(tickerTrack.children);
+    originalPills.forEach(pill => {
+      const clone = pill.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      tickerTrack.appendChild(clone);
     });
+
+    const pxPerSecond = 90;
+    const distance = tickerTrack.scrollWidth / 2;
+    tickerTrack.style.animationDuration = `${distance / pxPerSecond}s`;
   }
 
   // Formulário de orçamento — envia via Netlify Forms sem recarregar a página
